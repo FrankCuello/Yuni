@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Mejor Amiga Yuni</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Brush Script MT', 'Lucida Calligraphy', cursive;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            animation: gradientShift 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            perspective: 1000px;
+        }
+
+        .card-wrapper {
+            position: relative;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 
+                        0 0 60px rgba(240, 147, 251, 0.3);
+            overflow: hidden;
+            background: white;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-section {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(240, 147, 251, 0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-text {
+            font-size: 3em;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .content-section {
+            padding: 50px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff5f7 0%, #f0e6ff 100%);
+            position: relative;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+        }
+
+        .content-section::before {
+            content: '✨';
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #764ba2;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .phrase-container {
+            margin: 35px 0;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phrase {
+            font-size: 1.9em;
+            background: linear-gradient(135deg, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.6;
+            font-style: italic;
+            animation: slideIn 0.8s ease-out;
+            font-weight: 500;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reactions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .reaction-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 14px 22px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.8em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            transform: scale(1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reaction-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .reaction-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .reaction-btn:hover::before {
+            left: 100%;
+        }
+
+        .reaction-btn:active {
+            transform: scale(0.95);
+        }
+
+        .counter {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.6em;
+            color: white;
+            margin-left: 6px;
+            font-family: Arial, sans-serif;
+        }
+
+        .separator {
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #764ba2, transparent);
+            margin: 40px auto;
+        }
+
+        .signature {
+            margin-top: 20px;
+        }
+
+        .signature-name {
+            font-size: 2.4em;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .duo-title {
+            font-size: 1.8em;
+            background: linear-gradient(135deg, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .friendship-phrase {
+            font-size: 1.5em;
+            color: #764ba2;
+            font-style: italic;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .decorative {
+            font-size: 1.4em;
+            margin: 12px 0;
+            letter-spacing: 8px;
+            color: #667eea;
+        }
+
+        @media (max-width: 600px) {
+            .content-section {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2.3em;
+            }
+
+            .phrase {
+                font-size: 1.5em;
+            }
+
+            .signature-name {
+                font-size: 2em;
+            }
+
+            .photo-section {
+                height: 300px;
+            }
+
+            .photo-text {
+                font-size: 2.5em;
+            }
+        }
+
+        .pulse {
+            animation: pulse-anim 0.6s ease;
+        }
+
+        @keyframes pulse-anim {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card-wrapper">
+            <!-- Sección de Foto -->
+            <div class="photo-section" id="photoSection">
+                <div class="photo-overlay">
+                    <div class="photo-text">✨ YUNI ✨</div>
+                </div>
+            </div>
+
+            <!-- Sección de Contenido -->
+            <div class="content-section">
+                <h1>Para Mi Mejor Amiga</h1>
+                <p class="subtitle">~ Con todo mi corazón ~</p>
+
+                <div class="phrase-container">
+                    <p class="phrase" id="currentPhrase">Gracias por ser la mejor amiga que alguien podría tener</p>
+                </div>
+
+                <div class="reactions">
+                    <button class="reaction-btn" onclick="addReaction(this, '❤️')">❤️ <span class="counter">0</span></button>
+                    <button class="reaction-btn" onclick="addReaction(this, '💕')">💕 <span class="counter">0</span></button>
+                    <button class="reaction-btn" onclick="addReaction(this, '⭐')">⭐ <span class="counter">0</span></button>
+                    <button class="reaction-btn" onclick="addReaction(this, '🌹')">🌹 <span class="counter">0</span></button>
+                    <button class="reaction-btn" onclick="addReaction(this, '💫')">💫 <span class="counter">0</span></button>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="signature">
+                    <p class="decorative">✦ ✦ ✦</p>
+                    <p class="signature-name">✒️ Frank</p>
+                    <p class="duo-title">💕 Frank & Yuni 💕</p>
+                    <p class="friendship-phrase">"La amistad verdadera es para siempre"</p>
+                    <p class="decorative">✦ ✦ ✦</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const phrases = [
+            "Gracias por ser la mejor amiga que alguien podría tener",
+            "Tu amistad ilumina mis días más oscuros",
+            "Eres el ángel que Dios envió a mi vida",
+            "Contigo todo es posible y las risas no terminan",
+            "Eres mi hermana elegida del alma",
+            "Tu sonrisa es la medicina que necesito",
+            "Juntas somos imparables, somos un equipo",
+            "Gracias por nunca dejarme sola",
+            "Eres la mejor decisión que la vida me dio",
+            "Tu bondad inspira al mundo alrededor tuyo"
+        ];
+
+        let currentPhraseIndex = 0;
+        let reactionCounts = {};
+
+        // Cargar imagen de fondo
+        const imageUrl = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAB4AHgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba2uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba2uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==";
+        const photoSection = document.getElementById('photoSection');
+        photoSection.style.backgroundImage = `url('${imageUrl}')`;
+
+        // Auto-cambio de frases cada 8 segundos
+        setInterval(() => {
+            changePhrase();
+        }, 8000);
+
+        function changePhrase() {
+            currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+            const phraseEl = document.getElementById('currentPhrase');
+            phraseEl.style.animation = 'none';
+            setTimeout(() => {
+                phraseEl.textContent = phrases[currentPhraseIndex];
+                phraseEl.style.animation = 'slideIn 0.8s ease-out';
+            }, 10);
+        }
+
+        function addReaction(btn, emoji) {
+            if (!reactionCounts[emoji]) reactionCounts[emoji] = 0;
+            reactionCounts[emoji]++;
+
+            const counter = btn.querySelector('.counter');
+            counter.textContent = reactionCounts[emoji];
+
+            btn.classList.add('pulse');
+            setTimeout(() => btn.classList.remove('pulse'), 600);
+        }
+    </script>
+</body>
+</html>
